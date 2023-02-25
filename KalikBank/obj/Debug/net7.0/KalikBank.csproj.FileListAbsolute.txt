@@ -1,0 +1,15 @@
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\bin\Debug\net7.0\KalikBank.exe
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\bin\Debug\net7.0\KalikBank.deps.json
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\bin\Debug\net7.0\KalikBank.runtimeconfig.json
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\bin\Debug\net7.0\KalikBank.dll
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\bin\Debug\net7.0\KalikBank.pdb
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.csproj.AssemblyReference.cache
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.AssemblyInfoInputs.cache
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.AssemblyInfo.cs
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.dll
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\refint\KalikBank.dll
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.pdb
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\KalikBank.genruntimeconfig.cache
+C:\Users\Felipe\Documents\2023\Alura\02-Orietacao a Objetos\POO\KalikBank\obj\Debug\net7.0\ref\KalikBank.dll
