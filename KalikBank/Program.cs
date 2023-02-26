@@ -1,4 +1,5 @@
-﻿using KalikBank;
+﻿using KalikBank.Contas;
+using KalikBank.Titular;
 using System;
 using System.Collections.Generic;
 class Program
@@ -6,10 +7,10 @@ class Program
     static void Main(string[] args)
     {
         List<ContaCorrente> contas = new List<ContaCorrente>();
-        contas.Add(new ContaCorrente("Felipe Elias", "54376-5", 96, 2050));
-        contas.Add(new ContaCorrente("Gilberto Key", "65123-4", 96, 14000));
-        contas.Add(new ContaCorrente("Shayne Thompson", "43265-2", 96, 150));
-        contas.Add(new ContaCorrente("Margot Adams", "96554-5", 96, 650));
+        contas.Add(new ContaCorrente(new Cliente("Felipe Elias", "434.543.321-40", "Desenvolvedor"), "54376-5", 96, 2050));
+        contas.Add(new ContaCorrente(new Cliente("Gilberto Key", "455.742.211-20", "Engenheiro"), "65123-4", 96, 14000));
+        contas.Add(new ContaCorrente(new Cliente("Shayne Thompson", "434.776.765-60", "UX Designer"), "43265-2", 96, 150));
+        contas.Add(new ContaCorrente(new Cliente("Margot Adams", "321.356.434-50", "Analista"), "96554-5", 96, 650));
 
         bool flag = true;
 
