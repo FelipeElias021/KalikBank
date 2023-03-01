@@ -1,21 +1,33 @@
-﻿namespace KalikBank.Contas
+﻿using KalikBank.Titular;
+
+namespace KalikBank.Contas
 {
     public class ContaCorrente
     {
+        private static int _totalContas { get; set; }
         public int Id { get; set; }
         public Cliente Titular { get; set; }
         public string Senha { get; set; }
         public string Conta { get; set; }
         public int Agencia { get; set; }
         public int Senha4 { get; set; }
-        public double Saldo { get; set; }
+        public double Saldo { get; private set; }
         public double Caixa { get; set; }
 
-        public ContaCorrente(Cliente titular, string conta, int agencia, double saldo)
+        public ContaCorrente(Cliente titular, string conta, int agencia)
         {
             Titular = titular;
             Conta = conta;
             Agencia = agencia;
+            Id = ++_totalContas;
+        }
+
+        public ContaCorrente(Cliente titular, string conta, int agencia, double saldo) : this(titular, conta, agencia)
+        {
+            if (saldo < 0)
+            {
+                saldo = 0;
+            }
             Saldo = saldo;
         }
 
@@ -58,7 +70,7 @@
 
         public override string ToString()
         {
-            return $"Nome: {Titular.Nome}\nConta: {Conta}\nAgência: {Agencia}\nSaldo: {Saldo:F2} KLK";
+            return $"{Id} - Nome: {Titular.Nome}\nConta: {Conta}\nAgência: {Agencia}\nSaldo: {Saldo:F2} KLK";
         }
     }
 }
