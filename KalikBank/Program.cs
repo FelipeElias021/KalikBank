@@ -1,4 +1,5 @@
 ﻿using KalikBank.Contas;
+using KalikBank.ExceptionPersonalizada;
 using KalikBank.Titular;
 using System;
 using System.Collections.Generic;
@@ -7,17 +8,28 @@ class Program
     static void Main(string[] args)
     {
         List<ContaCorrente> contas = new List<ContaCorrente>();
-        contas.Add(new ContaCorrente(new Cliente("Felipe Elias", "434.543.321-40", "Desenvolvedor"), "54376-5", 96, 2050));
-        contas.Add(new ContaCorrente(new Cliente("Gilberto Key", "455.742.211-20", "Engenheiro"), "65123-4", 96, 4300));
-        contas.Add(new ContaCorrente(new Cliente("Shayne Thompson", "434.776.765-60", "UX Designer"), "43265-2", 96, 150));
-        contas.Add(new ContaCorrente(new Cliente("Margot Adams", "321.356.434-50", "Analista"), "96554-5", 96));
+        try
+        {
+            contas.Add(new ContaCorrente(new Cliente("Felipe Elias", "434.543.321-40", "Desenvolvedor"), "54376-5", 96, 2050));
+            contas.Add(new ContaCorrente(new Cliente("Gilberto Key", "455.742.211-20", "Engenheiro"), "65123-4", 96, 4300));
+            contas.Add(new ContaCorrente(new Cliente("Shayne Thompson", "434.776.765-60", "UX Designer"), "43265-2", -96, 150));
+            contas.Add(new ContaCorrente(new Cliente("Margot Adams", "321.356.434-50", "Analista"), "96554-5", 96));
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine("Parâmetro de erro: " + e.ParamName);
+            Console.WriteLine(e.Message);
+            Console.WriteLine(e.StackTrace);
+        }
 
         bool flag = true;
 
+        /*
         foreach (var i in contas)
         {
             Console.WriteLine(i + "\n\n");
         }
+        */
 
         while (flag)
         {
@@ -51,13 +63,33 @@ class Program
 
                 if (opcoes == 1)
                 {
-                    origem.Deposito(valor);
+                    try
+                    {
+                        origem.Deposito(valor);
+                    }
+                    catch (TransferenciaNegativaException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     Console.WriteLine($"\nConta:\n{origem}\n");
 
                 }
                 else if (opcoes == 2)
                 {
-                    origem.Saque(valor);
+                    try
+                    {
+                        origem.Saque(valor);
+                    }
+                    catch (SaldoInsuficienteException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (TransferenciaNegativaException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     Console.WriteLine($"\nConta:\n{origem}\n");
 
                 }
@@ -72,8 +104,19 @@ class Program
                         destino = getConta(contas);
                     }
 
+                    try
+                    {
+                        origem.Transferencia(valor, destino);
+                    }
+                    catch (SaldoInsuficienteException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (TransferenciaNegativaException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
 
-                    origem.Transferencia(valor, destino);
                     Console.WriteLine($"\nConta Origem:\n{origem}");
                     Console.WriteLine($"\nConta Destino:\n{destino}");
 

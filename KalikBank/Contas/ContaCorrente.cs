@@ -1,10 +1,12 @@
-﻿using KalikBank.Titular;
+﻿using KalikBank.ExceptionPersonalizada;
+using KalikBank.Titular;
 
 namespace KalikBank.Contas
 {
     public class ContaCorrente
     {
-        private static int _totalContas { get; set; }
+        public static int TotalContas { get; private set; }
+        public static double TaxaOperacao { get; private set; }
         public int Id { get; set; }
         public Cliente Titular { get; set; }
         public string Senha { get; set; }
@@ -16,10 +18,26 @@ namespace KalikBank.Contas
 
         public ContaCorrente(Cliente titular, string conta, int agencia)
         {
+            if (agencia <= 0)
+            {
+                throw new ArgumentException("Número de agência menor que zero", nameof(agencia));
+            }
+
             Titular = titular;
             Conta = conta;
             Agencia = agencia;
-            Id = ++_totalContas;
+
+
+            try
+            {
+                TaxaOperacao = 30 / TotalContas;
+            }
+            catch (DivideByZeroException)
+            {
+            }
+
+            Id = ++TotalContas;
+
         }
 
         public ContaCorrente(Cliente titular, string conta, int agencia, double saldo) : this(titular, conta, agencia)
@@ -35,37 +53,40 @@ namespace KalikBank.Contas
         {
             if (valor <= 0)
             {
-                Console.WriteLine("Valor Inválido");
+                throw new OperacaoFinanceiraException("Não é possível depositar valores negativos");
             }
-            else
-            {
-                Saldo += valor;
-            }
+
+            Saldo += valor;
         }
 
         public void Saque(double valor)
         {
-            if (valor <= Saldo && valor > 0)
+            if (valor <= 0)
             {
-                Saldo -= valor;
+                throw new TransferenciaNegativaException("Não é possível sacar valores negativos");
             }
-            else
+            if (valor > Saldo)
             {
-                Console.WriteLine("Saldo insuficiente");
+                throw new SaldoInsuficienteException("Saldo insuficiente para saque");
             }
+
+            Saldo -= valor;
         }
 
         public void Transferencia(double valor, ContaCorrente destino)
         {
-            if (valor <= Saldo && valor > 0)
+            if (valor <= 0)
             {
-                Saque(valor);
-                destino.Deposito(valor);
+                throw new TransferenciaNegativaException("Não é possível transferir valores negativos");
             }
-            else
+            if (valor > Saldo)
             {
-                Console.WriteLine("Saldo insuficiente");
+                throw new SaldoInsuficienteException("Saldo insuficiente para transferência");
             }
+
+            Saque(valor);
+            destino.Deposito(valor);
+
         }
 
         public override string ToString()
